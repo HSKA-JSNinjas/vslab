@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
@@ -57,6 +58,13 @@ public class UserClient {
         User tmpuser = restTemplate.getForObject("http://user-service/users/" + userId, User.class);
         userCache.putIfAbsent(userId, tmpuser);
         return tmpuser;
+    }
+
+    public ResponseEntity<User> login(User user) {
+
+        ResponseEntity<User> responseEntity = restTemplate.postForEntity("http://user-service/login" , user, User.class);
+
+        return responseEntity;
     }
 
     public Iterable<User> getUsersCache() {
