@@ -17,8 +17,8 @@ public class UsersrvApplication {
 
     @PostConstruct
     public void generateTestData() {
-        userRepository.save(new User(1000L,"Alice","pwd1"));
-        userRepository.save(new User(1001L,"Bob","pwd2"));
+        userRepository.save(new User(1000L,"Alice","pwd1", "Admin"));
+        userRepository.save(new User(1001L,"Bob","pwd2", "User"));
     }
 
 	public static void main(String[] args) {

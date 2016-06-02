@@ -22,12 +22,16 @@ public class User {
     @Column(name = "USER_PWD")
     private String passwd;
 
+    @Column(name = "USER_LEVEL")
+    private String role; //admin, user
+
     public User(){}
 
-    public User(Long id, String name, String pwd) {
+    public User(Long id, String name, String pwd, String role) {
         this.id = id;
         this.name = name;
         this.passwd = pwd;
+        this.role = role;
     }
 
     public Long getId() {
@@ -54,9 +58,17 @@ public class User {
         this.passwd = passwd;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     @Override
     public String toString() {
-        return "User [id=" + id + ", name=" + name + ", passwd=" + passwd + "]";
+        return "User [id=" + id + ", name=" + name + ", passwd=" + passwd + ", role=" + role + "]";
     }
 
 }

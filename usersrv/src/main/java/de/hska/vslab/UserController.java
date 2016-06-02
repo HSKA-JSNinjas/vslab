@@ -4,6 +4,7 @@ package de.hska.vslab;
  * Created by d059314 on 02.06.16.
  */
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -49,6 +50,16 @@ public class UserController {
     public ResponseEntity<User> deleteUser(@PathVariable Long userId) {
         repo.delete(userId);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public ResponseEntity<?> login(@RequestBody User user) {
+        List<User> dbUsers = repo.findByNameAndPasswd(user.getName(), user.getPasswd());
+        if (dbUsers.size() > 0) {
+            return new ResponseEntity<>(dbUsers.get(0), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
 }

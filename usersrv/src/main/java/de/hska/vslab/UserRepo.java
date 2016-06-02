@@ -5,4 +5,10 @@ package de.hska.vslab;
  */
 import org.springframework.data.repository.CrudRepository;
 
-public interface UserRepo extends CrudRepository<User, Long> { }
+import java.util.List;
+
+public interface UserRepo extends CrudRepository<User, Long> {
+
+    public List<User> findByNameAndPasswd(String name, String passwd);
+
+}
