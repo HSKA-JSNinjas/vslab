@@ -66,44 +66,14 @@ public class ProductController {
     }
 
 
-    /*
-    @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public ResponseEntity<Iterable<User>> getProducts() {
-        Iterable<User> allPolls = repo.findAll();
-        return new ResponseEntity<Iterable<User>>(allPolls, HttpStatus.OK);
-    }
+    @RequestMapping(value = "/products", method = RequestMethod.POST)
+    public ResponseEntity login(@RequestBody Product product) {
 
-    @RequestMapping(value = "/users", method = RequestMethod.POST)
-    public ResponseEntity<?> addUser(@RequestBody User user) {
-        user = repo.save(user);
-        // Set the location header for the newly created resource
-        HttpHeaders responseHeaders = new HttpHeaders();
-        URI newUserUri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId())
-                .toUri();
-        responseHeaders.setLocation(newUserUri);
-        return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
-    }
+        Product toBeSaved = new Product(product.getName(), product.getPrice(), product.getCategory(), product.getDetails());
 
-    @RequestMapping(value = "/users/{userId}", method = RequestMethod.GET)
-    public ResponseEntity<User> getUser(@PathVariable Long userId) {
-        User user = repo.findOne(userId);
-        return new ResponseEntity<>(user, HttpStatus.OK);
-    }
+        repo.save(toBeSaved);
 
-    @RequestMapping(value = "/users/{userId}", method = RequestMethod.DELETE)
-    public ResponseEntity<User> deleteUser(@PathVariable Long userId) {
-        repo.delete(userId);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.CREATED);
     }
-
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResponseEntity<?> login(@RequestBody User user) {
-        List<User> dbUsers = repo.findByNameAndPasswd(user.getName(), user.getPasswd());
-        if (dbUsers.size() > 0) {
-            return new ResponseEntity<>(dbUsers.get(0), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    }*/
 
 }

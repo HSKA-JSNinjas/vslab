@@ -29,17 +29,6 @@ public class UserController {
         return new ResponseEntity<Iterable<User>>(allPolls, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/users", method = RequestMethod.POST)
-    public ResponseEntity<?> addUser(@RequestBody User user) {
-        user = repo.save(user);
-        // Set the location header for the newly created resource
-        HttpHeaders responseHeaders = new HttpHeaders();
-        URI newUserUri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId())
-                .toUri();
-        responseHeaders.setLocation(newUserUri);
-        return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
-    }
-
     @RequestMapping(value = "/users/{userId}", method = RequestMethod.GET)
     public ResponseEntity<User> getUser(@PathVariable Long userId) {
         User user = repo.findOne(userId);
@@ -59,6 +48,24 @@ public class UserController {
             return new ResponseEntity<>(dbUsers.get(0), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @RequestMapping(value = "/users", method = RequestMethod.POST)
+    public ResponseEntity<?> createUser(@RequestBody User user) {
+
+        System.out.println("USERS:");
+        List<User> dbUsers = repo.findByName(user.getName());
+        System.out.println("USERS: " + dbUsers.size());
+
+        if (dbUsers.size() > 0) {
+            User u1 = dbUsers.get(0);
+            System.out.println("USER: " + u1.getName());
+            return new ResponseEntity<>(HttpStatus.PRECONDITION_FAILED);
+        } else {
+            User u = new User(user.getName(), user.getPasswd(), user.getRole());
+            repo.save(u);
+            return new ResponseEntity<User>(u, HttpStatus.CREATED);
         }
     }
 

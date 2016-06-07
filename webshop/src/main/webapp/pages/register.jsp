@@ -33,15 +33,6 @@
 			<div class="row">
 				<div class="col-xs-8">
 					<s:form action="RegisterAction" theme="simple">
-						<div class = "form-group">
-							<label>Vorname*:</label>
-							<s:textfield name="firstname" cssClass ="form-control" required="true" />
-						</div>
-						
-						<div class = "form-group">
-							<label>Nachname*:</label>
-							<s:textfield name="lastname" cssClass ="form-control"	required="true" />
-						</div>
 						
 						<div class = "form-group">
 							<label>Username*:</label>

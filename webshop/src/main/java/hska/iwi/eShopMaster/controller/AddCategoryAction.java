@@ -1,9 +1,10 @@
 package hska.iwi.eShopMaster.controller;
 
+import hska.iwi.eShopMaster.DataHandler;
 import hska.iwi.eShopMaster.model.businessLogic.manager.CategoryManager;
 import hska.iwi.eShopMaster.model.businessLogic.manager.impl.CategoryManagerImpl;
-import hska.iwi.eShopMaster.model.database.dataobjects.Category;
-import hska.iwi.eShopMaster.model.database.dataobjects.User;
+import hska.iwi.eShopMaster.model.Category;
+import hska.iwi.eShopMaster.model.User;
 
 import java.util.List;
 import java.util.Map;
@@ -24,19 +25,20 @@ public class AddCategoryAction extends ActionSupport {
 	
 	User user;
 
+	DataHandler dh = new DataHandler();
+
 	public String execute() throws Exception {
 
 		String res = "input";
 
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		user = (User) session.get("webshop_user");
-		if(user != null && (user.getRole().getTyp().equals("Admin"))) {
-			CategoryManager categoryManager = new CategoryManagerImpl();
-			// Add category
-			categoryManager.addCategory(newCatName);
+		if(user != null && (user.getRole().equals("Admin"))) {
+			
+			dh.createCategory(newCatName);
 			
 			// Go and get new Category list
-			this.setCategories(categoryManager.getCategories());
+			this.setCategories(dh.getCategories());
 			
 			res = "success";
 		}
@@ -51,8 +53,7 @@ public class AddCategoryAction extends ActionSupport {
 			addActionError(getText("error.catname.required"));
 		}
 		// Go and get new Category list
-		CategoryManager categoryManager = new CategoryManagerImpl();
-		this.setCategories(categoryManager.getCategories());
+		this.setCategories(dh.getCategories());
 	}
 
 	public List<Category> getCategories() {

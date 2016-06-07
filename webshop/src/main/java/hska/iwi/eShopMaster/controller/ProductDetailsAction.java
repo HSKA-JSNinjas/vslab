@@ -55,30 +55,6 @@ public class ProductDetailsAction extends ActionSupport {
 		this.id = id;
 	}
 
-	public String getSearchValue() {
-		return searchValue;
-	}
-
-	public void setSearchValue(String searchValue) {
-		this.searchValue = searchValue;
-	}
-
-	public Integer getSearchMinPrice() {
-		return searchMinPrice;
-	}
-
-	public void setSearchMinPrice(Integer searchMinPrice) {
-		this.searchMinPrice = searchMinPrice;
-	}
-
-	public Integer getSearchMaxPrice() {
-		return searchMaxPrice;
-	}
-
-	public void setSearchMaxPrice(Integer searchMaxPrice) {
-		this.searchMaxPrice = searchMaxPrice;
-	}
-
 	public Product getProduct() {
 		return product;
 	}

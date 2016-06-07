@@ -61,6 +61,19 @@ public class ProductProxyController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/categories", method = RequestMethod.POST)
+    public ResponseEntity createCategory(@RequestBody Category category) {
+
+        ResponseEntity e = productClient.createCategory(category);
+        return e;
+    }
+
+    @RequestMapping(value = "/products", method = RequestMethod.POST)
+    public ResponseEntity createProduct(@RequestBody Product product) {
+        ResponseEntity e = productClient.createProduct(product);
+        return e;
+    }
+
     /*
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public ResponseEntity<Iterable<User>> getUsers() {

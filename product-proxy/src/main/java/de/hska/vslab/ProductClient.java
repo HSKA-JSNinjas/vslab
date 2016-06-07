@@ -114,5 +114,15 @@ public class ProductClient {
         return category;
     }
 
+    public ResponseEntity<Category> createCategory(Category category) {
+        ResponseEntity<Category> responseEntity = restTemplate.postForEntity("http://category-service/categories" , category, Category.class);
+        return responseEntity;
+    }
+
+    public ResponseEntity<Product> createProduct(Product product) {
+        ResponseEntity<Product> responseEntity = restTemplate.postForEntity("http://product-service/products" , product, Product.class);
+        return responseEntity;
+    }
+
 
 }
