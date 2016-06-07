@@ -74,14 +74,13 @@ public class UserClient {
     }
 
     public ResponseEntity<User> login(User user) {
-
         ResponseEntity<User> responseEntity = restTemplate.postForEntity("http://user-service/login" , user, User.class);
-
         return responseEntity;
+    }
 
-        //User u = restTemplate.postForObject("http://user-service/login", user, User.class);
-
-        //return (u != null);
+    public ResponseEntity<User> createUser(User user) {
+        ResponseEntity<User> responseEntity = restTemplate.postForEntity("http://user-service/users" , user, User.class);
+        return responseEntity;
     }
 
     public Iterable<User> getUsersCache() {

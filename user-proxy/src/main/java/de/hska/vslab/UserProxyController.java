@@ -31,14 +31,12 @@ public class UserProxyController {
 
         ResponseEntity e = userClient.login(user);
         return e;
+    }
 
-        /*Boolean success = userClient.login(user);
-
-        if (success) {
-            return new ResponseEntity(HttpStatus.OK);
-        } else {
-            return new ResponseEntity(HttpStatus.UNAUTHORIZED);
-        }*/
+    @RequestMapping(value = "/users", method = RequestMethod.POST)
+    public ResponseEntity createProduct(@RequestBody User user) {
+        ResponseEntity e = userClient.createUser(user);
+        return e;
     }
 
 }

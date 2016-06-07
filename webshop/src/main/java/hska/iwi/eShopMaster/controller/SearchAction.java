@@ -27,7 +27,7 @@ public class SearchAction extends ActionSupport{
 	private static final long serialVersionUID = -6565401833074694229L;
 	
 	
-	private String searchDescription = null;
+	private String searchDescription = "";
 	private String searchMinPrice;
 	private String searchMaxPrice;
 	

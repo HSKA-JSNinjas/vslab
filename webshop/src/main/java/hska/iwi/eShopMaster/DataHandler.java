@@ -75,4 +75,11 @@ public class DataHandler {
         return responseEntity;
     }
 
+    public ResponseEntity<User> createUser(String name, String pwd) {
+        User u = new User((long)0, name, pwd, "User");
+        String url = apiUrl + "user-api/users";
+        System.out.println(url);
+        ResponseEntity<User> response = restTemplate.postForEntity(url , u, User.class);
+        return response;
+    }
 }
