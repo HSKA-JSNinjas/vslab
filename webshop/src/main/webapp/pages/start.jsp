@@ -37,7 +37,7 @@
 		
 		<div class="container">
 			<div class="row">
-				<s:text name="login.status" /> 	${webshop_user.firstname} ${webshop_user.lastname}
+				<s:text name="login.status" /> 	${webshop_user.name}
 			</div>
 			<div class="row">
 				<div class="col-xs-8">

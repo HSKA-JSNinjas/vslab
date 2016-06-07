@@ -3,9 +3,18 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/webshop/EShop.iml" filepath="$PROJECT_DIR$/webshop/EShop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/categorysrv.iml" filepath="$PROJECT_DIR$/.idea/modules/categorysrv.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/categorysrv_main.iml" filepath="$PROJECT_DIR$/.idea/modules/categorysrv_main.iml" group="categorysrv" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/categorysrv_test.iml" filepath="$PROJECT_DIR$/.idea/modules/categorysrv_test.iml" group="categorysrv" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/eureka-server.iml" filepath="$PROJECT_DIR$/.idea/modules/eureka-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/eureka-server_main.iml" filepath="$PROJECT_DIR$/.idea/modules/eureka-server_main.iml" group="eureka-server" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/eureka-server_test.iml" filepath="$PROJECT_DIR$/.idea/modules/eureka-server_test.iml" group="eureka-server" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/product-proxy.iml" filepath="$PROJECT_DIR$/.idea/modules/product-proxy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/product-proxy_main.iml" filepath="$PROJECT_DIR$/.idea/modules/product-proxy_main.iml" group="product-proxy" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/product-proxy_test.iml" filepath="$PROJECT_DIR$/.idea/modules/product-proxy_test.iml" group="product-proxy" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/productsrv.iml" filepath="$PROJECT_DIR$/.idea/modules/productsrv.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/productsrv_main.iml" filepath="$PROJECT_DIR$/.idea/modules/productsrv_main.iml" group="productsrv" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/productsrv_test.iml" filepath="$PROJECT_DIR$/.idea/modules/productsrv_test.iml" group="productsrv" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/user-proxy.iml" filepath="$PROJECT_DIR$/.idea/modules/user-proxy.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/user-proxy_main.iml" filepath="$PROJECT_DIR$/.idea/modules/user-proxy_main.iml" group="user-proxy" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/user-proxy_test.iml" filepath="$PROJECT_DIR$/.idea/modules/user-proxy_test.iml" group="user-proxy" />

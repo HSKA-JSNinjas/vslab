@@ -2,6 +2,7 @@
 /Users/d059314/Documents/hska/labvs/jsninjas/webshop/webshop/src/main/java/hska/iwi/eShopMaster/model/businessLogic/manager/impl/ProductManagerImpl.java
 /Users/d059314/Documents/hska/labvs/jsninjas/webshop/webshop/src/main/java/hska/iwi/eShopMaster/model/businessLogic/manager/CategoryManager.java
 /Users/d059314/Documents/hska/labvs/jsninjas/webshop/webshop/src/main/java/hska/iwi/eShopMaster/controller/AddCategoryAction.java
+/Users/d059314/Documents/hska/labvs/jsninjas/webshop/webshop/src/main/java/hska/iwi/eShopMaster/model/User.java
 /Users/d059314/Documents/hska/labvs/jsninjas/webshop/webshop/src/main/java/hska/iwi/eShopMaster/controller/ListAllProductsAction.java
 /Users/d059314/Documents/hska/labvs/jsninjas/webshop/webshop/src/main/java/hska/iwi/eShopMaster/controller/ProductDetailsAction.java
 /Users/d059314/Documents/hska/labvs/jsninjas/webshop/webshop/src/main/java/hska/iwi/eShopMaster/controller/DeleteCategoryAction.java

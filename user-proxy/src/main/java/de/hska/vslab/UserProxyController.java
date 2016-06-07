@@ -27,8 +27,18 @@ public class UserProxyController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResponseEntity<User> login(@RequestBody User user) {
-        return userClient.login(user);
+    public ResponseEntity login(@RequestBody User user) {
+
+        ResponseEntity e = userClient.login(user);
+        return e;
+
+        /*Boolean success = userClient.login(user);
+
+        if (success) {
+            return new ResponseEntity(HttpStatus.OK);
+        } else {
+            return new ResponseEntity(HttpStatus.UNAUTHORIZED);
+        }*/
     }
 
 }

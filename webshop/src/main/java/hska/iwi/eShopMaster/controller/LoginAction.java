@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.DefaultResponseErrorHandler;
 import org.springframework.web.client.RestTemplate;
 
 public class LoginAction extends ActionSupport {
@@ -34,6 +35,10 @@ public class LoginAction extends ActionSupport {
 		String result = "input";
 
 		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.setErrorHandler(new DefaultResponseErrorHandler(){
+			protected boolean hasError(HttpStatus statusCode) {
+				return false;
+			}});
 
 		User u = new User((long) 0, username, password, "");
 

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id="categorysrv" external.linked.project.path="$MODULE_DIR$/../../categorysrv" external.root.project.path="$MODULE_DIR$/../../categorysrv" external.system.id="GRADLE" external.system.module.group="" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../categorysrv">
+      <excludeFolder url="file://$MODULE_DIR$/../../categorysrv/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/../../categorysrv/build" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
