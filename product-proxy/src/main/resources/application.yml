@@ -1,5 +1,5 @@
 server:
-  port: 8100
+  port: 8020
 spring:
   application:
     name: product-proxy

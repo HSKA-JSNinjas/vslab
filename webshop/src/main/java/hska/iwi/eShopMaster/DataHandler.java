@@ -25,16 +25,16 @@ public class DataHandler {
 
     public List<Product> getProducts(int categoryId, String text, Double min, Double max) {
         String q = "categoryId=" + categoryId + "&searchValue=" + text + "&searchPriceMin=" + min + "&searchPriceMax=" + max;
-        Product[] products = this.restTemplate.getForObject("http://localhost:8081/product-api/products?" + q, Product[].class);
+        Product[] products = this.restTemplate.getForObject("http://localhost:8100/product-api/products?" + q, Product[].class);
         return Arrays.asList(products);
     }
 
     public Product getProductById(int productId) {
-        return this.restTemplate.getForObject("http://localhost:8081/product-api/products/" + productId, Product.class);
+        return this.restTemplate.getForObject("http://localhost:8100/product-api/products/" + productId, Product.class);
     }
 
     public List<Category> getCategories() {
-        Category[] categories = this.restTemplate.getForObject("http://localhost:8081/product-api/categories", Category[].class);
+        Category[] categories = this.restTemplate.getForObject("http://localhost:8100/product-api/categories", Category[].class);
         return Arrays.asList(categories);
     }
 

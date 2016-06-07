@@ -42,7 +42,7 @@ public class LoginAction extends ActionSupport {
 
 		User u = new User((long) 0, username, password, "");
 
-		ResponseEntity<User> responseEntity = restTemplate.postForEntity("http://localhost:8081/user-api/login" , u, User.class);
+		ResponseEntity<User> responseEntity = restTemplate.postForEntity("http://localhost:8100/user-api/login" , u, User.class);
 
 
 		if (responseEntity.getStatusCode() == HttpStatus.OK) {
