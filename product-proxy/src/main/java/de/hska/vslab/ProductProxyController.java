@@ -50,6 +50,13 @@ public class ProductProxyController {
 
     @RequestMapping(value = "/categories/{categoryId}", method = RequestMethod.DELETE)
     public ResponseEntity deleteCategory(@PathVariable int categoryId) {
+
+        Iterable<Product> products = productClient.getProducts(categoryId, "", 0.00, 0.00);
+
+        for (Product product : products) {
+            productClient.deleteProduct(product.getId());
+        }
+
         productClient.deleteCategory(categoryId);
         return new ResponseEntity(HttpStatus.OK);
     }
