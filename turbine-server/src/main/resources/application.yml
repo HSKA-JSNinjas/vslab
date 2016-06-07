@@ -1,0 +1,4 @@
+server:
+  port: 8200
+turbine:
+  appConfig: user-service
