@@ -1,9 +1,10 @@
 package hska.iwi.eShopMaster.controller;
 
+import hska.iwi.eShopMaster.DataHandler;
 import hska.iwi.eShopMaster.model.businessLogic.manager.ProductManager;
 import hska.iwi.eShopMaster.model.businessLogic.manager.impl.ProductManagerImpl;
-import hska.iwi.eShopMaster.model.database.dataobjects.Product;
-import hska.iwi.eShopMaster.model.database.dataobjects.User;
+import hska.iwi.eShopMaster.model.Product;
+import hska.iwi.eShopMaster.model.User;
 
 import java.util.List;
 import java.util.Map;
@@ -29,8 +30,7 @@ public class ListAllProductsAction extends ActionSupport {
 		
 		if(user != null){
 			System.out.println("list all products!");
-			ProductManager productManager = new ProductManagerImpl();
-			this.products = productManager.getProducts();
+			this.products = new DataHandler().getProducts(0, "", 0.00, 0.00);
 			result = "success";
 		}
 		

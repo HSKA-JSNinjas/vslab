@@ -1,19 +1,23 @@
 package hska.iwi.eShopMaster.controller;
 
-import hska.iwi.eShopMaster.model.businessLogic.manager.CategoryManager;
-import hska.iwi.eShopMaster.model.businessLogic.manager.ProductManager;
+import hska.iwi.eShopMaster.DataHandler;
+import hska.iwi.eShopMaster.model.Category;
+import hska.iwi.eShopMaster.model.Product;
+import hska.iwi.eShopMaster.model.User;
 import hska.iwi.eShopMaster.model.businessLogic.manager.impl.CategoryManagerImpl;
 import hska.iwi.eShopMaster.model.businessLogic.manager.impl.ProductManagerImpl;
-import hska.iwi.eShopMaster.model.database.dataobjects.Category;
-import hska.iwi.eShopMaster.model.database.dataobjects.Product;
-import hska.iwi.eShopMaster.model.database.dataobjects.User;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.DefaultResponseErrorHandler;
+import org.springframework.web.client.RestTemplate;
 
 public class SearchAction extends ActionSupport{
 
@@ -27,8 +31,8 @@ public class SearchAction extends ActionSupport{
 	private String searchMinPrice;
 	private String searchMaxPrice;
 	
-	private Double sMinPrice = null;
-	private Double sMaxPrice = null;
+	private Double sMinPrice = 0.00;
+	private Double sMaxPrice = 0.00;
 	
 	private User user;
 	private List<Product> products;
@@ -38,7 +42,9 @@ public class SearchAction extends ActionSupport{
 	public String execute() throws Exception {
 		
 		String result = "input";
-		
+
+		DataHandler dh = new DataHandler();
+
 		// Get user:
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		user = (User) session.get("webshop_user");
@@ -46,7 +52,7 @@ public class SearchAction extends ActionSupport{
 		
 		if(user != null){
 			// Search products and show results:
-			ProductManager productManager = new ProductManagerImpl();
+			//ProductManager productManager = new ProductManagerImpl();
 //			this.products = productManager.getProductsForSearchValues(this.searchDescription, this.searchMinPrice, this.searchMaxPrice);
 			if (!searchMinPrice.isEmpty()){
 				sMinPrice =  Double.parseDouble(this.searchMinPrice);
@@ -54,11 +60,15 @@ public class SearchAction extends ActionSupport{
 			if (!searchMaxPrice.isEmpty()){
 				sMaxPrice =  Double.parseDouble(this.searchMaxPrice);
 			}
-			this.products = productManager.getProductsForSearchValues(this.searchDescription, sMinPrice, sMaxPrice);
-			
+
+			this.products = dh.getProducts(0, this.searchDescription, sMinPrice, sMaxPrice);
+
+			this.categories = dh.getCategories();
+
 			// Show all categories:
+			/*
 			CategoryManager categoryManager = new CategoryManagerImpl();
-			this.categories = categoryManager.getCategories();
+			this.categories = categoryManager.getCategories();*/
 			result = "success";
 		}
 		

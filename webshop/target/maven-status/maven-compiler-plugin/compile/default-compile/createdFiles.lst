@@ -20,6 +20,7 @@ hska/iwi/eShopMaster/controller/AddProductAction.class
 hska/iwi/eShopMaster/controller/ProductDetailsAction.class
 hska/iwi/eShopMaster/model/database/dataAccessObjects/RoleDAO.class
 hska/iwi/eShopMaster/model/database/dataobjects/Role.class
+hska/iwi/eShopMaster/model/User.class
 hska/iwi/eShopMaster/model/database/dataAccessObjects/UserDAO.class
 hska/iwi/eShopMaster/model/database/GenericHibernateDAO.class
 hska/iwi/eShopMaster/controller/AddCategoryAction.class

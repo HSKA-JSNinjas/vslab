@@ -10,17 +10,21 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+import org.springframework.web.client.DefaultResponseErrorHandler;
 import org.springframework.web.client.RestTemplate;
 
+import javax.annotation.PostConstruct;
 
 
 @Component
@@ -39,6 +43,15 @@ public class UserClient {
     /*RestTemplate restTemplate() {
         return new RestTemplate();
     }*/
+
+    @PostConstruct
+    private void init() {
+        restTemplate.setErrorHandler(new DefaultResponseErrorHandler(){
+            protected boolean hasError(HttpStatus statusCode) {
+                return false;
+            }});
+    }
+
 
     @HystrixCommand(fallbackMethod = "getUsersCache", commandProperties = {
             @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "2") })
@@ -65,6 +78,10 @@ public class UserClient {
         ResponseEntity<User> responseEntity = restTemplate.postForEntity("http://user-service/login" , user, User.class);
 
         return responseEntity;
+
+        //User u = restTemplate.postForObject("http://user-service/login", user, User.class);
+
+        //return (u != null);
     }
 
     public Iterable<User> getUsersCache() {
