@@ -1,8 +1,11 @@
 package hska.iwi.eShopMaster;
 
+import com.opensymphony.xwork2.ActionContext;
 import hska.iwi.eShopMaster.model.Product;
 import hska.iwi.eShopMaster.model.Category;
+import hska.iwi.eShopMaster.model.User;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.DefaultResponseErrorHandler;
 import org.springframework.web.client.RestTemplate;
 
@@ -10,6 +13,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by d059314 on 07.06.16.
@@ -57,6 +61,18 @@ public class DataHandler {
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
+    }
+
+
+    public void createCategory(String name) {
+        Category c = new Category(name);
+        restTemplate.postForEntity(apiUrl + "product-api/categories" , c, Category.class);
+    }
+
+    public ResponseEntity<Product> createProduct(String name, Double price, int categoryId, String details) {
+        Product p = new Product(name, price, categoryId, details);
+        ResponseEntity<Product> responseEntity = restTemplate.postForEntity(apiUrl + "product-api/products" , p, Product.class);
+        return responseEntity;
     }
 
 }

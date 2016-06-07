@@ -1,17 +1,17 @@
 package hska.iwi.eShopMaster.controller;
 
-import hska.iwi.eShopMaster.model.businessLogic.manager.CategoryManager;
-import hska.iwi.eShopMaster.model.businessLogic.manager.ProductManager;
-import hska.iwi.eShopMaster.model.businessLogic.manager.impl.CategoryManagerImpl;
-import hska.iwi.eShopMaster.model.businessLogic.manager.impl.ProductManagerImpl;
-import hska.iwi.eShopMaster.model.database.dataobjects.Category;
-import hska.iwi.eShopMaster.model.database.dataobjects.User;
+import hska.iwi.eShopMaster.DataHandler;
+import hska.iwi.eShopMaster.model.Product;
+import hska.iwi.eShopMaster.model.Category;
+import hska.iwi.eShopMaster.model.User;
 
 import java.util.List;
 import java.util.Map;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 public class AddProductAction extends ActionSupport {
 
@@ -23,6 +23,8 @@ public class AddProductAction extends ActionSupport {
 	private String details = null;
 	private List<Category> categories;
 
+	DataHandler dh = new DataHandler();
+
 	public String execute() throws Exception {
 		String result = "input";
 		Map<String, Object> session = ActionContext.getContext().getSession();
@@ -30,11 +32,10 @@ public class AddProductAction extends ActionSupport {
 
 		if(user != null && (user.getRole().equals("Admin"))) {
 
-			ProductManager productManager = new ProductManagerImpl();
-			int productId = productManager.addProduct(name, Double.parseDouble(price), categoryId,
+			 ResponseEntity<Product> response = dh.createProduct(name, Double.parseDouble(price), categoryId,
 					details);
 
-			if (productId > 0) {
+			if (response.getStatusCode() == HttpStatus.CREATED) {
 				result = "success";
 			}
 		}
@@ -44,8 +45,7 @@ public class AddProductAction extends ActionSupport {
 
 	@Override
 	public void validate() {
-		CategoryManager categoryManager = new CategoryManagerImpl();
-		this.setCategories(categoryManager.getCategories());
+		this.setCategories(dh.getCategories());
 		// Validate name:
 
 		if (getName() == null || getName().length() == 0) {
