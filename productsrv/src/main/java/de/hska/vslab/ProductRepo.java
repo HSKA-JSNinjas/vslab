@@ -11,5 +11,6 @@ public interface ProductRepo extends CrudRepository<Product, Long> {
 
     public List<Product> findById(int id);
     public List<Product> findByCategoryId(int categoryId);
+    public List<Product> findByNameContainingAndPriceBetween(String name, Double min, Double max);
 
 }

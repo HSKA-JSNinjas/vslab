@@ -1,9 +1,8 @@
 package hska.iwi.eShopMaster.controller;
 
-import hska.iwi.eShopMaster.model.businessLogic.manager.ProductManager;
-import hska.iwi.eShopMaster.model.businessLogic.manager.impl.ProductManagerImpl;
-import hska.iwi.eShopMaster.model.database.dataobjects.Product;
-import hska.iwi.eShopMaster.model.database.dataobjects.User;
+import hska.iwi.eShopMaster.DataHandler;
+import hska.iwi.eShopMaster.model.Product;
+import hska.iwi.eShopMaster.model.User;
 
 import java.util.Map;
 
@@ -32,8 +31,7 @@ public class ProductDetailsAction extends ActionSupport {
 		user = (User) session.get("webshop_user");
 		
 		if(user != null) {
-			ProductManager productManager = new ProductManagerImpl();
-			product = productManager.getProductById(id);
+			product = new DataHandler().getProductById(id);
 			
 			res = "success";			
 		}

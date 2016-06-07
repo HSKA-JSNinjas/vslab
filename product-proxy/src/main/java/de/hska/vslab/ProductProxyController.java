@@ -17,11 +17,18 @@ public class ProductProxyController {
     private ProductClient productClient;
 
     @RequestMapping(value = "/products", method = RequestMethod.GET)
-    public ResponseEntity<Iterable<Product>> getProducts() {
-
-        return new ResponseEntity<Iterable<Product>>(productClient.getProducts(), HttpStatus.OK);
-
+    public ResponseEntity<Iterable<Product>> getProducts(@RequestParam(defaultValue = "0", name = "categoryId", required = false) int categoryId,
+                                                         @RequestParam(defaultValue = "", name = "searchValue", required = false) String text,
+                                                         @RequestParam(defaultValue = "0.0", name = "searchPriceMin", required = false) double searchPriceMin,
+                                                         @RequestParam(defaultValue = "0.00", name = "searchPriceMax", required = false) double searchPriceMax) {
+        return new ResponseEntity<Iterable<Product>>(productClient.getProducts(categoryId, text, searchPriceMin, searchPriceMax), HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/products/{productId}", method = RequestMethod.GET)
+    public ResponseEntity<Product> getProduct(@PathVariable int productId) {
+        return new ResponseEntity<Product>(productClient.getProduct(productId), HttpStatus.OK);
+    }
+
 
     @RequestMapping(value = "/categories", method = RequestMethod.GET)
     public ResponseEntity<Iterable<Category>> getCategories() {

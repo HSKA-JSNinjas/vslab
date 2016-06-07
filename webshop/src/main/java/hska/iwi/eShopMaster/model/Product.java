@@ -1,4 +1,4 @@
-package de.hska.vslab;
+package hska.iwi.eShopMaster.model;
 
 /**
  * Created by d059314 on 02.06.16.

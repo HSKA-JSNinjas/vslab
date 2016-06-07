@@ -42,14 +42,37 @@ public class ProductClient {
         return restTemplate.getForObject("http://product-service/products?categoryId=" + categoryId, Product[].class);
     }
 
-    
+    private void addCategoryToProduct(Product p) {
+        Category c = this.getCategory(p.getCategory());
+        p.setCategoryName(c.getName());
+    }
 
 
-    public Iterable<Product> getProducts() {
+
+    public Iterable<Product> getProducts(int categoryId, String text, Double min, Double max) {
         Collection<Product> products = new HashSet<Product>();
-        Product[] tmpusers = restTemplate.getForObject("http://product-service/products", Product[].class);
-        Collections.addAll(products, tmpusers);
+
+        String q = "categoryId=" + categoryId + "&searchValue=" + text + "&searchPriceMin=" + min + "&searchPriceMax=" + max;
+
+        System.out.println("Query: " + q);
+
+        Product[] tmpproducts = restTemplate.getForObject("http://product-service/products?" + q, Product[].class);
+
+
+        for (int i = 0; i < tmpproducts.length; i++) {
+            Product p = tmpproducts[i];
+            addCategoryToProduct(p);
+        }
+
+        Collections.addAll(products, tmpproducts);
+
         return products;
+    }
+
+    public Product getProduct(int productId) {
+        Product product = restTemplate.getForObject("http://product-service/products/" + productId, Product.class);
+        this.addCategoryToProduct(product);
+        return product;
     }
 
     public Iterable<Product> getProductsForCategoryId(int categoryId) {
