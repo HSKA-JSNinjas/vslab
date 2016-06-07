@@ -38,4 +38,15 @@ public class CategoryController {
 
     }
 
+    @RequestMapping(value = "/categories/{categoryId}", method = RequestMethod.DELETE)
+    public ResponseEntity delete(@PathVariable int categoryId) {
+        List<Category> categories = repo.findById(categoryId);
+        if (categories.size() > 0) {
+            Category p = categories.get(0);
+            repo.delete(p);
+            return new ResponseEntity(HttpStatus.OK);
+        }
+        return new ResponseEntity(HttpStatus.NOT_FOUND);
+    }
+
 }

@@ -54,6 +54,17 @@ public class ProductController {
 
     }
 
+    @RequestMapping(value = "/products/{productId}", method = RequestMethod.DELETE)
+    public ResponseEntity delete(@PathVariable int productId) {
+        List<Product> products = repo.findById(productId);
+        if (products.size() > 0) {
+            Product p = products.get(0);
+            repo.delete(p);
+            return new ResponseEntity(HttpStatus.OK);
+        }
+        return new ResponseEntity(HttpStatus.NOT_FOUND);
+    }
+
 
     /*
     @RequestMapping(value = "/users", method = RequestMethod.GET)

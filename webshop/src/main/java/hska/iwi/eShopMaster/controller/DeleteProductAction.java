@@ -1,7 +1,8 @@
 package hska.iwi.eShopMaster.controller;
 
+import hska.iwi.eShopMaster.DataHandler;
 import hska.iwi.eShopMaster.model.database.dataAccessObjects.ProductDAO;
-import hska.iwi.eShopMaster.model.database.dataobjects.User;
+import hska.iwi.eShopMaster.model.User;
 
 import java.util.Map;
 
@@ -24,9 +25,9 @@ public class DeleteProductAction extends ActionSupport {
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		User user = (User) session.get("webshop_user");
 		
-		if(user != null && (user.getRole().getTyp().equals("admin"))) {
+		if(user != null && (user.getRole().equals("Admin"))) {
 
-			new ProductDAO().deleteById(id);
+			new DataHandler().deleteProduct(id);
 			{
 				res = "success";
 			}

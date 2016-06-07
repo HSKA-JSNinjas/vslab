@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @EnableCircuitBreaker
 public class ProductProxyController {
@@ -38,6 +40,18 @@ public class ProductProxyController {
     @RequestMapping(value = "/categories/{categoryId}", method = RequestMethod.GET)
     public ResponseEntity<Category> getCategory(@PathVariable int categoryId) {
         return new ResponseEntity<Category>(productClient.getCategory(categoryId), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/products/{productId}", method = RequestMethod.DELETE)
+    public ResponseEntity deleteProduct(@PathVariable int productId) {
+        productClient.deleteProduct(productId);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/categories/{categoryId}", method = RequestMethod.DELETE)
+    public ResponseEntity deleteCategory(@PathVariable int categoryId) {
+        productClient.deleteCategory(categoryId);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     /*

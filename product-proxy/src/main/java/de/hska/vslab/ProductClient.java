@@ -4,6 +4,8 @@ package de.hska.vslab;
  * Created by d059314 on 02.06.16.
  */
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.*;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
@@ -73,6 +75,22 @@ public class ProductClient {
         Product product = restTemplate.getForObject("http://product-service/products/" + productId, Product.class);
         this.addCategoryToProduct(product);
         return product;
+    }
+
+    public void deleteProduct(int productId) {
+        try {
+            restTemplate.delete(new URI("http://product-service/products/" + productId));
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteCategory(int categoryId) {
+        try {
+            restTemplate.delete(new URI("http://category-service/categories/" + categoryId));
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
     }
 
     public Iterable<Product> getProductsForCategoryId(int categoryId) {
