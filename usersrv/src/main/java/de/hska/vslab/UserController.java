@@ -32,7 +32,13 @@ public class UserController {
     @RequestMapping(value = "/users/{userId}", method = RequestMethod.GET)
     public ResponseEntity<User> getUser(@PathVariable Long userId) {
         User user = repo.findOne(userId);
-        return new ResponseEntity<>(user, HttpStatus.OK);
+
+        if (user != null) {
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
     }
 
     @RequestMapping(value = "/users/{userId}", method = RequestMethod.DELETE)
