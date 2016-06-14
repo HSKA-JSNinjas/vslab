@@ -15,5 +15,5 @@ eureka:
     metadataMap:
       instanceId: "${spring.application.name}:${random.value}"
 turbine:
-  appConfig: user-proxy,product-proxy
+  appConfig: product-proxy, user-proxy
   clusterNameExpression: new String("default")
