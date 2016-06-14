@@ -8,6 +8,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.*;
 
+import com.netflix.servo.util.Iterables;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -50,7 +51,8 @@ public class ProductClient {
     }
 
 
-
+    @HystrixCommand(fallbackMethod = "getCachedProducts", commandProperties = {
+            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "2") })
     public Iterable<Product> getProducts(int categoryId, String text, Double min, Double max) {
         Collection<Product> products = new HashSet<Product>();
 
@@ -69,6 +71,10 @@ public class ProductClient {
         Collections.addAll(products, tmpproducts);
 
         return products;
+    }
+
+    public Iterable<Product> getCachedProducts(int categoryId, String text, Double min, Double max){
+        return null;
     }
 
     public Product getProduct(int productId) {
