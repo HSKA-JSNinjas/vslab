@@ -1,4 +1,5 @@
+
 server:
   port: 8200
 turbine:
-  appConfig: user-service
+  app-config: user-proxy
