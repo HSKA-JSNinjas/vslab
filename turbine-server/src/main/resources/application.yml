@@ -1,5 +1,19 @@
-
 server:
   port: 8200
+management:
+  port: 8201
+spring:
+  application:
+    name: turbine
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 5
+    metadataMap:
+      instanceId: "${spring.application.name}:${random.value}"
 turbine:
-  app-config: user-proxy
+  appConfig: user-proxy,product-proxy
+  clusterNameExpression: new String("default")
