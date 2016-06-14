@@ -12,7 +12,10 @@ import java.util.Map;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
+import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
@@ -31,11 +34,6 @@ import javax.annotation.PostConstruct;
 public class UserClient {
 
     private final Map<Long, User> userCache = new LinkedHashMap<Long, User>();
-
-    /*
-    @Autowired
-    private RestTemplate restTemplate;
-    */
 
     @Autowired
     private RestTemplate restTemplate;

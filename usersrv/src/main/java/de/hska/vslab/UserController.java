@@ -31,6 +31,8 @@ public class UserController {
 
     @RequestMapping(value = "/users/{userId}", method = RequestMethod.GET)
     public ResponseEntity<User> getUser(@PathVariable Long userId) {
+
+        System.out.println("GET USER");
         User user = repo.findOne(userId);
 
         if (user != null) {

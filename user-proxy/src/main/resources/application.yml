@@ -12,3 +12,6 @@ eureka:
     leaseRenewalIntervalInSeconds: 5
     metadataMap:
       instanceId: "${spring.application.name}:${random.value}"
+user-proxy:
+  ribbon:
+    ServerListRefreshInterval: 2000
